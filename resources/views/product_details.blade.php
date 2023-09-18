@@ -390,13 +390,13 @@
 
                                                                                 <div class="product-rating">
                                                                                     <ul class="rating">
-                                                                                        @for ($i=1; $i <= $review->rating; $i++)
+                                                                                        @for ($i=1; $i <= ($review->rating); $i++)
                                                                                             <li>
                                                                                                 <i data-feather="star"
                                                                                                     class="fill"></i>
                                                                                             </li>
                                                                                         @endfor
-                                                                                        @for ($i=1; $i <= 5 - $review->rating; $i++)
+                                                                                        @for ($i=1; $i <= 5 - ($review->rating); $i++)
                                                                                             <li>
                                                                                                 <i data-feather="star"></i>
                                                                                             </li>
@@ -404,7 +404,6 @@
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="reply">
                                                                                 <p>{{ $review->review }}<a
                                                                                         href="javascript:void(0)">Reply</a>
