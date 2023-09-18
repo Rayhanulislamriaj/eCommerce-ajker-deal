@@ -380,7 +380,7 @@
 
                                                                         <div class="people-comment">
                                                                             <a class="name"
-                                                                                href="javascript:void(0)">ddd</a>
+                                                                                href="javascript:void(0)">{{ $review->user->name }}</a>
                                                                             <div class="date-time">
                                                                                 <h6 class="text-content">
                                                                                     {{ $review->created_at->format('d M, Y') }}
@@ -390,13 +390,13 @@
 
                                                                                 <div class="product-rating">
                                                                                     <ul class="rating">
-                                                                                        @for ($i=1; $i <= ($review->rating); $i++)
+                                                                                        @for ($i = 1; $i <= $review->rating; $i++)
                                                                                             <li>
                                                                                                 <i data-feather="star"
                                                                                                     class="fill"></i>
                                                                                             </li>
                                                                                         @endfor
-                                                                                        @for ($i=1; $i <= 5 - ($review->rating); $i++)
+                                                                                        @for ($i = 1; $i <= 5 - $review->rating; $i++)
                                                                                             <li>
                                                                                                 <i data-feather="star"></i>
                                                                                             </li>

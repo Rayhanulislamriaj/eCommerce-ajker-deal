@@ -505,21 +505,16 @@
 
                                             <div class="product-rating mt-sm-2 mt-1">
                                                 <ul class="rating">
-                                                    <li>
-                                                        <i data-feather="star" class="fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i data-feather="star" class="fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i data-feather="star" class="fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i data-feather="star" class="fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i data-feather="star"></i>
-                                                    </li>
+                                                    @for ($i = 1; $i <= round(reviews($product->id)->average('rating')); $i++)
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                    @endfor
+                                                    @for ($i = 1; $i <= 5 - round(reviews($product->id)->average('rating')); $i++)
+                                                        <li>
+                                                            <i data-feather="star"></i>
+                                                        </li>
+                                                    @endfor
                                                 </ul>
 
                                                 <h6 class="theme-color">In Stock</h6>
