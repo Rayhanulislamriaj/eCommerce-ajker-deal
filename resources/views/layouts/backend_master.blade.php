@@ -243,7 +243,7 @@
                             <ul class="sidebar-links" id="simple-bar">
                                 <li class="back-btn"></li>
 
-                                <li class="sidebar-list">
+                                <li class="sidebar-list @yield('dashboard')">
                                     <a class="sidebar-link sidebar-title link-nav" href="{{ route('dashboard') }}">
                                         <i class="ri-home-line"></i>
                                         <span>Dashboard</span>
@@ -289,7 +289,7 @@
                                         </ul>
                                     </li>
                                     <li class="sidebar-list">
-                                        <a class="sidebar-link sidebar-title link-nav border-end border-danger border-5"
+                                        <a class="sidebar-link sidebar-title link-nav @yield('coupon.index')"
                                             href="{{ route('coupon.index') }}">
                                             <i class="ri-price-tag-3-line"></i>
                                             <span>Coupons</span>

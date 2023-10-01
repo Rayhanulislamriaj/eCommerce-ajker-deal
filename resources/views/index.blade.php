@@ -500,7 +500,8 @@
                                             </a>
 
                                             <h5 class="sold text-content">
-                                                <span class="theme-color price">From 100 Tk</span>
+                                                <span class="theme-color price">From
+                                                    {{ lowest_product_price($product->id) }} tk</span>
                                             </h5>
 
                                             <div class="product-rating mt-sm-2 mt-1">
@@ -516,9 +517,11 @@
                                                         </li>
                                                     @endfor
                                                 </ul>
-
-                                                <h6 class="theme-color">In Stock</h6>
-                                                <h6 class="text-danger">Stock Out</h6>
+                                                @if (stock_checker($product->id))
+                                                    <h6 class="theme-color">In Stock</h6>
+                                                @else
+                                                    <h6 class="text-danger">Stock Out</h6>
+                                                @endif
                                             </div>
 
                                             <div class="add-to-cart-box">

@@ -34,11 +34,13 @@ class FrontendController extends Controller
         $product = Product::findOrFail($id);
         $vendor = User::find($product->user_id);
         $available_colors = Inventory::where('product_id', $id)->select('color_id')->distinct()->get();
+        $related_products = Product::where('id', '!=', $id)->where('category_id', $product->category_id)->get();
         return view('product_details', [
             'product' => $product,
             'product_photos' => Product_photo::where('product_id', $id)->get(),
             'vendor' => $vendor,
-            'available_colors' => $available_colors
+            'available_colors' => $available_colors,
+            'related_products' => $related_products,
         ]);
     }
 

@@ -1,4 +1,7 @@
 @extends('layouts.backend_master')
+@section('coupon.index')
+    border-end border-danger border-5
+@endsection
 @section('content')
     <div class="page-body">
 

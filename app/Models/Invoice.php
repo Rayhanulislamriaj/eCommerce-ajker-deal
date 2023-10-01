@@ -24,6 +24,10 @@ class Invoice extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+    function userCustomer()
+    {
+        return $this->hasOne(User::class, 'id', 'customer_id');
+    }
 
     // function relationtoproduct()
     // {

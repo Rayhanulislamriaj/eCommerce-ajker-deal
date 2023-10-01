@@ -20,7 +20,8 @@ class HomeController extends Controller
             $users = User::withTrashed()->get();
             return view('dashboard.admin', compact('applied_vendors', 'users'));
         } else if (auth()->user()->role == 'vendor') {
-            return view('dashboard.vendor');
+            $orders = Invoice::where('vendor_id', auth()->id())->get();
+            return view('dashboard.vendor', compact('orders'));
         } else {
             $addresses = Address::where('customer_id', auth()->id())->get();
             $invoices = Invoice::where('customer_id', auth()->id())->get();
