@@ -45,6 +45,7 @@ Route::post('final/checkout', [FrontendController::class, 'final_checkout'])->na
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('contact/post', [FrontendController::class, 'contact_post']);
+Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 
 //registration via sms
 Route::post('send/otp', [FrontendController::class, 'send_otp'])->name('send.otp');

@@ -469,5 +469,11 @@ class FrontendController extends Controller
     }
     //login via phone number sms end
 
+    public function shop()
+    {
+        $products = Product::all();
+        return view('shop', compact('products'));
+    }
+
 
 }

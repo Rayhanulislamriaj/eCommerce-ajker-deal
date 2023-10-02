@@ -591,12 +591,12 @@
                 @php
                     $products = App\Models\Product::all();
                 @endphp
-                @forelse($related_products as $product)
+                @forelse($related_products as $related_product)
                     <div class="col-3 px-0">
                         <div class="product-box" style="border-right: 0px">
                             <div class="product-image">
-                                <a href="{{ route('product.details', $product->id) }}">
-                                    <img src="{{ asset('uploads/product_photos') }}/{{ App\Models\Product_photo::where('product_id', $product->id)->get()->random()->product_photo }}"
+                                <a href="{{ route('product.details', $related_product->id) }}">
+                                    <img src="{{ asset('uploads/product_photos') }}/{{ App\Models\Product_photo::where('product_id', $related_product->id)->get()->random()->product_photo }}"
                                         class="img-fluid blur-up lazyload" alt="">
                                 </a>
                                 <ul class="product-option">
@@ -620,29 +620,29 @@
                                 </ul>
                             </div>
                             <div class="product-detail text-center">
-                                <a href="{{ route('product.details', $product->id) }}">
-                                    <h6 class="name">{{ $product->product_name }}</h6>
+                                <a href="{{ route('product.details', $related_product->id) }}">
+                                    <h6 class="name">{{ $related_product->product_name }}</h6>
                                 </a>
 
                                 <h5 class="sold text-content">
                                     <span class="theme-color price">From
-                                        {{ lowest_product_price($product->id) }} tk</span>
+                                        {{ lowest_product_price($related_product->id) }} tk</span>
                                 </h5>
 
                                 <div class="mt-sm-2 mt-1">
                                     <ul class="rating">
-                                        @for ($i = 1; $i <= round(reviews($product->id)->average('rating')); $i++)
+                                        @for ($i = 1; $i <= round(reviews($related_product->id)->average('rating')); $i++)
                                             <li>
                                                 <i data-feather="star" class="fill"></i>
                                             </li>
                                         @endfor
-                                        @for ($i = 1; $i <= 5 - round(reviews($product->id)->average('rating')); $i++)
+                                        @for ($i = 1; $i <= 5 - round(reviews($related_product->id)->average('rating')); $i++)
                                             <li>
                                                 <i data-feather="star"></i>
                                             </li>
                                         @endfor
                                     </ul>
-                                    @if (stock_checker($product->id))
+                                    @if (stock_checker($related_product->id))
                                         <h6 class="theme-color">In Stock</h6>
                                     @else
                                         <h6 class="text-danger">Stock Out</h6>
@@ -650,7 +650,7 @@
                                 </div>
 
                                 <div class="add-to-cart-box">
-                                    <a href="{{ route('product.details', $product->id) }}"
+                                    <a href="{{ route('product.details', $related_product->id) }}"
                                         class="btn btn-add-cart">Details</a>
 
                                 </div>
