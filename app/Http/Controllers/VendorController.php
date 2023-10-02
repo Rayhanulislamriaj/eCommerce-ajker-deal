@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,5 +33,13 @@ class VendorController extends Controller
             'role' => 'vendor'
         ]);
         return back()->with('success', 'Your application send successfully! After approval you will recive a confirmation email.');
+    }
+    public function make_paid($invoice_id)
+    {
+        // return $invoice_id;
+        Invoice::find($invoice_id)->update([
+            'payment_status' => 'paid'
+        ]);
+        return back();
     }
 }

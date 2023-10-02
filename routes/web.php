@@ -63,6 +63,7 @@ Route::get('dashboard', [HomeController::class, 'dashboard'])->middleware(['auth
 Route::get('download/invoice/{id}', [HomeController::class, 'download_invoice'])->middleware(['auth', 'verified'])->name('download.invoice');
 Route::post('add/ddress', [HomeController::class, 'add_address'])->middleware(['auth', 'verified'])->name('add.address');
 Route::post('add/ddress/edit', [HomeController::class, 'add_address_edit'])->middleware(['auth', 'verified'])->name('add.address.edit');
+Route::get('pay/now/{inoice_id}', [HomeController::class, 'pay_now'])->middleware(['auth', 'verified'])->name('pay.now');
 Route::get('vendor/approve/{id}', [HomeController::class, 'vendor_approve'])->middleware(['auth'])->name('vendor.approve');
 
 
@@ -94,11 +95,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('attribute', AttributeController::class)->middleware('vendor.cheker');
     Route::post('color/store', [AttributeController::class, 'color_store'])->name('color.store')->middleware('vendor.cheker');
     Route::post('size/store', [AttributeController::class, 'size_store'])->name('size.store')->middleware('vendor.cheker');
+
 });
 
 
 Route::get('vendor/register', [VendorController::class, 'register'])->name('vendor.register');
 Route::post('vendor/register/post', [VendorController::class, 'register_post'])->name('vendor.register.post');
+Route::get('make/paid/{invoice_id}', [VendorController::class, 'make_paid'])->name('make.paid');
 
 
 Route::middleware(['auth', 'admin.cheker'])->group(function () {

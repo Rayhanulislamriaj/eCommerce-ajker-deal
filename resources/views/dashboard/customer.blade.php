@@ -707,7 +707,7 @@
                                             <h2>Invoices</h2>
                                         </div>
                                         <div class="table-responsive col-12">
-                                            <table class="table table-primary">
+                                            <table class="table">
                                                 <thead>
                                                     <tr class="table-success text-center">
                                                         <th scope="col">ID</th>
@@ -726,7 +726,13 @@
                                                             <td>{{ $invoice->total }}</td>
                                                             <td>{{ $invoice->delivery_charge }}</td>
                                                             <td>{{ $invoice->payment_option }}</td>
-                                                            <td>{{ $invoice->payment_status }}</td>
+                                                            <td>{{ $invoice->payment_status }}
+                                                                @if ($invoice->payment_status == 'unpaid' && $invoice->payment_option == 'online')
+                                                                    <br>
+                                                                    <a href="{{ url('pay/now') }}/{{ $invoice->id }}">Pay
+                                                                        now</a>
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $invoice->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="success"

@@ -8,39 +8,19 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- chart caard section start -->
-                <div class="col-sm-6 col-xxl-3 col-lg-6">
-                    <div class="main-tiles border-5 border-0  card-hover card o-hidden">
-                        <div class="custome-1-bg b-r-4 card-body">
-                            <div class="media align-items-center static-top-widget">
-                                <div class="media-body p-0">
-                                    <span class="m-0">Total Customers</span>
-                                    <h4 class="mb-0 counter">
-                                        {{-- {{ $users->where('role', 'customer')->count() }} --}}
-                                    </h4>
-                                </div>
-                                <div class="align-self-center text-center">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="col-sm-6 col-xxl-3 col-lg-6">
                     <div class="main-tiles border-5 card-hover border-0 card o-hidden">
                         <div class="custome-2-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Admin</span>
+                                    <span class="m-0">Total Orders</span>
                                     <h4 class="mb-0 counter">
-                                        {{-- {{ $users->where('role', 'admin')->count() }} --}}
-                                        {{-- <a href="add-new-product.html" class="badge badge-light-secondary grow"> --}}
-                                        <a href="{{ route('add.new.admin') }}" class="btn text-danger">
-                                            Add New</a>
-                                    </h4>
+                                        {{ $orders->count() }}
                                 </div>
                                 <div class="align-self-center text-center">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-file"></i>
                                 </div>
                             </div>
                         </div>
@@ -52,15 +32,14 @@
                         <div class="custome-3-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Vendor Applied</span>
+                                    <span class="m-0">Total Orders Value</span>
                                     <h4 class="mb-0 counter">
-                                        {{-- {{ $users->where('role', 'vendor')->whereNotNull('deleted_at')->count() }} --}}
+                                        {{ $orders->sum('subtotal') }}
                                     </h4>
                                 </div>
 
                                 <div class="align-self-center text-center">
-                                    {{-- <i class="ri-chat-3-line"></i> --}}
-                                    <i class="fa fa-user-plus"></i>
+                                    <i class="fa fa-money-bill"></i>
                                 </div>
                             </div>
                         </div>
@@ -72,14 +51,14 @@
                         <div class="custome-4-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Active Vendor</span>
+                                    <span class="m-0">Total Paid Amount</span>
                                     <h4 class="mb-0 counter">
-                                        {{-- {{ $users->where('role', 'vendor')->whereNull('deleted_at')->count() }} --}}
+                                        {{ $orders->where('payment_status', 'paid')->sum('subtotal') }}
                                     </h4>
                                 </div>
 
                                 <div class="align-self-center text-center">
-                                    <i class="fa fa-user-check"></i>
+                                    <i class="fa fa-money-bill"></i>
 
                                 </div>
                             </div>
@@ -92,10 +71,11 @@
                         <div class="custome-1-bg b-r-4 card-body">
                             <div class="media align-items-center static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Revenue</span>
-                                    <h4 class="mb-0 counter">$6659
+                                    <span class="m-0">Total Unpaid Orders</span>
+                                    <h4 class="mb-0 counter">
+                                        {{ $orders->where('payment_status', 'unpaid')->count() }}
                                         <span class="badge badge-light-primary grow">
-                                            <i data-feather="trending-up"></i>8.5%</span>
+                                            <i data-feather="trending-up"></i>/span>
                                     </h4>
                                 </div>
                                 <div class="align-self-center text-center">
@@ -106,64 +86,6 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-xxl-3 col-lg-6">
-                    <div class="main-tiles border-5 card-hover border-0 card o-hidden">
-                        <div class="custome-2-bg b-r-4 card-body">
-                            <div class="media static-top-widget">
-                                <div class="media-body p-0">
-                                    <span class="m-0">Total Orders</span>
-                                    <h4 class="mb-0 counter">9856
-                                        <span class="badge badge-light-danger grow">
-                                            <i data-feather="trending-down"></i>8.5%</span>
-                                    </h4>
-                                </div>
-                                <div class="align-self-center text-center">
-                                    <i class="ri-shopping-bag-3-line"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-xxl-3 col-lg-6">
-                    <div class="main-tiles border-5 card-hover border-0  card o-hidden">
-                        <div class="custome-3-bg b-r-4 card-body">
-                            <div class="media static-top-widget">
-                                <div class="media-body p-0">
-                                    <span class="m-0">Total Products</span>
-                                    <h4 class="mb-0 counter">893
-                                        <a href="add-new-product.html" class="badge badge-light-secondary grow">
-                                            ADD NEW</a>
-                                    </h4>
-                                </div>
-
-                                <div class="align-self-center text-center">
-                                    <i class="ri-chat-3-line"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-xxl-3 col-lg-6">
-                    <div class="main-tiles border-5 card-hover border-0 card o-hidden">
-                        <div class="custome-4-bg b-r-4 card-body">
-                            <div class="media static-top-widget">
-                                <div class="media-body p-0">
-                                    <span class="m-0">Total Customers</span>
-                                    <h4 class="mb-0 counter">4.6k
-                                        <span class="badge badge-light-success grow">
-                                            <i data-feather="trending-down"></i>8.5%</span>
-                                    </h4>
-                                </div>
-
-                                <div class="align-self-center text-center">
-                                    <i class="ri-user-add-line"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 {{-- <div class="col-12"> --}}
                 <!-- Recent orders start-->
@@ -187,7 +109,15 @@
                                                     <td>
                                                         <div class="best-product-box">
                                                             <div class="product-name">
-                                                                <h5>Customer Name</h5>
+                                                                <h5>{{ $order->id }}</h5>
+                                                                <h5>Invoice No.</h5>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="best-product-box">
+                                                            <div class="product-name">
+                                                                <h5>Name</h5>
                                                                 <h6>{{ $order->userCustomer->name }}</h6>
                                                             </div>
                                                         </div>
@@ -196,23 +126,50 @@
                                                     <td>
                                                         <div class="product-detail-box">
 
-                                                            <h5>Customer Email</h5>
-                                                            <h6>{{ $order->userCustomer->email }}</h6>
+                                                            <h5>Sub Total</h5>
+                                                            <h6>{{ $order->subtotal }}</h6>
                                                         </div>
                                                     </td>
 
                                                     <td>
                                                         <div class="product-detail-box">
-                                                            <h6>Applied Date</h6>
-                                                            {{-- <h5>{{ $applied_vendor->created_at }}</h5> --}}
+                                                            <h6>Payment Option</h6>
+                                                            <h5>{{ $order->payment_option }}</h5>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="product-detail-box">
+                                                            <h6>Payment Status</h6>
+                                                            <h5>{{ $order->payment_status }}</h5>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="product-detail-box">
+                                                            {{-- <h6>Payment Status</h6> --}}
+                                                            <h6>
+
+                                                                <a class="success btn btn-primary"
+                                                                    href="{{ route('download.invoice', $order->id) }}">Download
+                                                                    {{-- <i class="fa-solid fa-download"></i> --}}
+                                                                </a>
+                                                            </h6>
                                                         </div>
                                                     </td>
 
-                                                    <td>
-                                                        {{-- <a href="{{ route('vendor.approve', $applied_vendor->id) }}" --}}
-                                                        class="btn btn-dark"><i class="fa fa-check"></i>
-                                                        Approve</a>
-                                                    </td>
+                                                    @if ($order->payment_status == 'unpaid')
+                                                        <td>
+                                                            <a href="{{ route('make.paid', $order->id) }}"
+                                                                class="btn btn-secondary"><i class="fa fa-check"></i>
+                                                                Make Paid</a>
+                                                        </td>
+                                                    @else
+                                                        <td>
+                                                            <a href="#" class="btn btn-info"><i
+                                                                    class="fa fa-check"></i>
+                                                                Payment Done</a>
+                                                        </td>
+                                                    @endif
+
 
 
                                                 </tr>

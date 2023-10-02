@@ -55,5 +55,12 @@ class HomeController extends Controller
         User::onlyTrashed()->where('id', $id)->restore();
         return back();
     }
+    public function pay_now($invoice_id)
+    {
+        session(['S_invoice_id' => $invoice_id]);
+        session(['S_delivery_cost' => Invoice::find($invoice_id)->delivery_charge]);
+        session(['S_total' => Invoice::find($invoice_id)->subtotal]);
+        return redirect('pay');
+    }
 
 }
